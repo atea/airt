@@ -1,9 +1,8 @@
 <#
     .SYNOPSIS
-    Ths script will download KAPE and extract it to the current working directory. It is expected this script is run from an existing KAPE directory.
+    Ths script will download KAPE and extract it to the c directory.
     .DESCRIPTION
-    This script will download KAPE from the original source.
-	Source code borrowed from Eric Zimmerman.
+    This script will download KAPE from the original, official KAPE source.
     .EXAMPLE
     C:\PS> Download-KAPE.ps1
     
@@ -13,7 +12,7 @@
 #>
 
 write-host ""
-Write-Host " The script will download KAPE and extract it to the current working directory."
+Write-Host " The script will download KAPE and extract it to c:\airt\kape"
 write-host ""
 
 $kapedestfolder = "C:\airt\"
@@ -33,14 +32,6 @@ Invoke-WebRequest -Uri $dUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsi
 Write-Host "Expanding archive."
 $progressPreference = 'Continue'
 Expand-Archive -Path $destFile -DestinationPath $kapedestfolder -Force
-
-if (Test-Path $kapedestfolder"\KAPE\kape.exe") {
-	write-host "KAPE downloaded and extracted."
-	} else {
-	write-host "Can not find kape.exe.... o.O"
-	}
-
-New-Item -ItemType Directory -Force -Path $kapetkapefolder | out-null
 	
 Write-Host "Downloading KAPE Atea-files."
 $destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\targets\!local\!Atea_collection.tkape'
