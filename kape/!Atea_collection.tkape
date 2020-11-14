@@ -1,0 +1,51 @@
+Description: Atea default Collection - serverside
+
+Author: ATEA IRT
+Version: 1.0
+Id: 5dbe9218-4734-4734-4734-56001d38e7f5
+RecreateDirectories: True
+Targets:
+    -
+        Name: Event Logs
+        Category: Event Logs
+        Path: EventLogs.tkape
+    -
+        Name: Evidence of Execution
+        Category: Evidence Of Execution
+        Path: EvidenceOfExecution.tkape
+    -
+        Name: File System
+        Category: File System
+        Path: FileSystem.tkape
+    -
+        Name: LnkFilesAndJumpLists
+        Category: File Access
+        Path: LnkFilesAndJumpLists.tkape
+    -
+        Name: PowerShellConsole
+        Category: Evidence Of Execution
+        Path: PowerShellConsole.tkape
+    -
+        Name: RegistryHives
+        Category: Registry Hives
+        Path: RegistryHives.tkape
+    -
+        Name: ScheduledTasks
+        Category: ScheduledTasks
+        Path: ScheduledTasks.tkape
+    -
+        Name: SRUM
+        Category: SRUM
+        Path: SRUM.tkape
+    -
+        Name: ThumbCache
+        Category: Thumbcache
+        Path: Thumbcache.tkape
+    -
+        Name: USBDevicesLogs
+        Category: USB
+        Path: USBDevicesLogs.tkape
+    -
+        Name: WindowsIndexSearch
+        Category: Search
+        Path: WindowsIndexSearch.tkape
