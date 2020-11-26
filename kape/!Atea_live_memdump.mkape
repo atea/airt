@@ -7,7 +7,6 @@ BinaryUrl: Native
 ExportFormat: dmp
 Processors:
     -
-        Executable: WinPmem 
+        Executable: WinPmem.mkape 
         CommandLine: ""
         ExportFormat: ""
-    -

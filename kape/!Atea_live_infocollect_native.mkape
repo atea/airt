@@ -1,4 +1,4 @@
-Description: Atea-kapenative-cmpnd
+Description: Atea-kapenative - uses native local system binaries and commands. No additional tools needed.
 Category: LiveResponse
 Author: Gos
 Version: 1.0
@@ -50,8 +50,3 @@ Processors:
         Executable: DNSCache.mkape
         CommandLine: ""
         ExportFormat: ""
-
-
-
- 
-
