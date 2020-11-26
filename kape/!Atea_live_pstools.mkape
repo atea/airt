@@ -1,0 +1,32 @@
+Description: !Atea_live_pstools.mkape
+Category: LiveResponse
+Author: Gos
+Version: 1.0
+Id: 814f00f5-a7ea-a7ea-a7ea-a7e7ad90c1159
+BinaryUrl: Native	
+ExportFormat: txt
+Processors:
+    -
+        Executable: psfile.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: psinfo.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: pslist.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: psloggedon.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: psservice.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: pstree.mkape
+        CommandLine: ""
+        ExportFormat: ""
