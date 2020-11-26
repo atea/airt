@@ -35,5 +35,11 @@ Expand-Archive -Path $destFile -DestinationPath $kapedestfolder -Force
 	
 Write-Host "Downloading KAPE Atea-files."
 $destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\targets\!local\!Atea_collection.tkape'
-$tkapeUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/!Atea_collection.tkape"
-Invoke-WebRequest -Uri $tkapeUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
+$kapeCfgSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/!Atea_collection.tkape"
+Invoke-WebRequest -Uri $kapeCfgSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
+
+$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\LiveResponse\!Atea_infocollect_native.mkape'
+$kapeCfgSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/!Atea_infocollect_native.mkape'"
+Invoke-WebRequest -Uri $kapeCfgSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
+
+

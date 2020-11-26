@@ -1,0 +1,57 @@
+Description: Atea-kapenative-cmpnd
+Category: LiveResponse
+Author: Gos
+Version: 1.0
+Id: 814f00f5-a7ea-a7ea-a7ea-aa57ad90c1159
+BinaryUrl: Native	
+ExportFormat: txt
+Processors:
+    -
+        Executable: RoutingTable.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: ARPcache.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: qwinsta.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: PWSH-Get-CimInstance_ProcessList.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: PWSH-Get-ProcessList.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: NetSystemInfo.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: NetStat.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: NBTStat_NETBIOS_Sessions.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: NBTStat_NETBIOS_Cache.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: IPConfig.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: DNSCache.mkape
+        CommandLine: ""
+        ExportFormat: ""
+
+
+
+ 
+
