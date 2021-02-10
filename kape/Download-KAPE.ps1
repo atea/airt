@@ -59,6 +59,9 @@ $kapedestfolder = "C:\airt\"
 $kapetkapefolder = "C:\airt\KAPE\targets\!local"
 $kapeoutputfolder = "C:\airt\KAPE_OUT"
 
+# Define TLS-version to be used for web-requests as older servers default to lesser secure TLS-versions
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 function VerifyHash($file,$ExpectedHash) {
 	# Function checks supplied hash against a hashing operation against the file.
 	# If a mismatch, the file will be deemed tampered with, deleted and a note dropped.
@@ -74,6 +77,19 @@ function VerifyHash($file,$ExpectedHash) {
 	}
 }
 
+function UnzipFile($zipfile,$destpath) {
+	# Function to determine wether to use Expand-Archive or something else.
+	# Expand-Archive was introduced in PS-v5
+	if($PSVersionTable.PSVersion.Major -gt 4) {
+		write-host "..Expanding Archive"
+		write-host $zipfile
+		Expand-Archive -Path $zipfile -DestinationPath $destpath -Force
+	}else{
+		write-host "..Expanding Archive using COM object"
+		$shell = new-object -com Shell.Application 
+		$shell.namespace($destpath).copyhere($shell.NameSpace($zipfile).Items(),0x14)  #0x14 = silent overwrite
+	}
+}
 
 function CreateKAPEFolders {
 	Write-Host "Creating folders"
@@ -89,9 +105,8 @@ function DownloadKAPE {
 	$progressPreference = 'Continue'																	# SilentlyContinue, Continue, Inquire(Y/N),Stop
 	Invoke-WebRequest -Uri $dUrl -OutFile $destFile -ErrorAction:silentlycontinue -UseBasicParsing
 	
-	Write-Host "..Expanding archive."
 	$progressPreference = 'Continue'
-	Expand-Archive -Path $destFile -DestinationPath $kapedestfolder -Force
+	UnzipFile -zipfile $destFile -destpath $kapedestfolder
 	}
 function DownloadKAPEAteaNativeFiles{
 	Write-Host "Downloading KAPE Atea-files."
@@ -135,16 +150,15 @@ function Download3rdPartyUtils {
 	Write-Host "..Downloading PStools."
 	$destFile = Join-Path -Path $PSToolsTemp -ChildPath '\PSTools.zip'
 	$PSToolsSrcUrl = "https://download.sysinternals.com/files/PSTools.zip"
-	$SHA512Hash = "F82025253A323D93DBA31314B89CEB83584B5DC8E3F4ED91A76BD779ED01A1E54ACF289650AAAFAA4C3826C595B7F7209FA7A2858FA2C6D0A0471F0F6C44A0E3"
+	$SHA512Hash = "90345F5697C420779C853413CF5EE0B574A2E86A19465225ABB562BEE9A1416EFFB9FA6BFF64CAADD5B6FDD073FDDD108B78DEE92F0F4AD81FCC0DB0CE4A01A6"
 	Invoke-WebRequest -Uri $PSToolsSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
 	
 	# Verifying Hash of downloaded file before continuing
 	VerifyHash -file $destFile -ExpectedHash $SHA512Hash
 	
 	#Unzip archive
-	Write-Host "..Expanding archive."
-	Expand-Archive -Path $destFile -DestinationPath $PSToolsTemp -Force
-	
+	UnzipFile -zipfile $destFile -destpath $PSToolsTemp
+		
 	#Copy files from temporary folder to bin-folder
 	Write-Host "..Copying necessary PS Tools Binaries"
 	$NecesssaryPSTools = "psfile.exe","psinfo.exe","pslist.exe","psloggedon.exe","psservice.exe"
