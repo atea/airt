@@ -150,7 +150,7 @@ function Download3rdPartyUtils {
 	Write-Host "..Downloading PStools ver. 2.47"
 	$destFile = Join-Path -Path $PSToolsTemp -ChildPath '\PSTools.zip'
 	$PSToolsSrcUrl = "https://download.sysinternals.com/files/PSTools.zip"
-	$SHA512Hash = "CB0C80B9C1FB2D37E925A81AB03F9F74C4D1C89FF9AE20D98C5151EC3E79A48C71D9C376B96ECCF25C99FA8F1290709FF2095A611A63273F10D40C67D8FBF2DB"
+	$SHA512Hash = "034E032AB15529A01212EAF34E826D3BC907E3E1F13F40F529E6CA47F062CAC32545816362DDE8000A8EF6C2747942BDD6594E4C2EE35970BBAD9A7929658C0C"
 	Invoke-WebRequest -Uri $PSToolsSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
 	
 	# Verifying Hash of downloaded file before continuing
