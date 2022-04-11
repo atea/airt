@@ -7,26 +7,26 @@ BinaryUrl: Native
 ExportFormat: txt
 Processors:
     -
-        Executable: psfile.mkape
+        Executable: SysInternals_PsFile.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: psinfo.mkape
+        Executable: SysInternals_PsInfo.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: pslist.mkape
+        Executable: SysInternals_PsList.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: psloggedon.mkape
+        Executable: SysInternals_PsLoggedOn.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: psservice.mkape
+        Executable: SysInternals_PsService.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: pstree.mkape
+        Executable: SysInternals_PsTree.mkape
         CommandLine: ""
         ExportFormat: ""

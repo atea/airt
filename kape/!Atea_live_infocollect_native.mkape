@@ -7,23 +7,23 @@ BinaryUrl: Native
 ExportFormat: txt
 Processors:
     -
-        Executable: RoutingTable.mkape
+        Executable: Windows_RoutingTable.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: ARPcache.mkape
+        Executable: Windows_ARPCache.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: qwinsta.mkape
+        Executable: Windows_qwinsta_RDPSessions.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: PWSH-Get-CimInstance_ProcessList.mkape
+        Executable: PowerShell_ProcessList_CimInstance.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: PWSH-Get-ProcessList.mkape
+        Executable: PowerShell_ProcessList_WMI.mkape
         CommandLine: ""
         ExportFormat: ""
     -
@@ -31,22 +31,30 @@ Processors:
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: NetStat.mkape
+        Executable: Windows_NetStat.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: NBTStat_NETBIOS_Sessions.mkape
+        Executable: Windows_nbtstat_NetBIOSSessions.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: NBTStat_NETBIOS_Cache.mkape
+        Executable: Windows_nbtstat_NetBIOSCache.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: IPConfig.mkape
+        Executable: Windows_IPConfig.mkape
         CommandLine: ""
         ExportFormat: ""
     -
-        Executable: DNSCache.mkape
+        Executable: Windows_DNSCache.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: Windows_schtasks.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: PowerShell_NetUserAdministrators.mkape
         CommandLine: ""
         ExportFormat: ""
