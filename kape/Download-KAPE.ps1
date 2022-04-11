@@ -57,6 +57,7 @@ write-host "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Define folder environment
 $kapedestfolder = "C:\airt\"
 $kapetkapefolder = "C:\airt\KAPE\targets\!local"
+$kapemkapefolder = "C:\airt\KAPE\modules\Atea"
 $kapeoutputfolder = "C:\airt\KAPE_OUT"
 
 # Define TLS-version to be used for web-requests as older servers default to lesser secure TLS-versions
@@ -95,7 +96,9 @@ function CreateKAPEFolders {
 	Write-Host "Creating folders"
 	if(New-Item -ItemType Directory -Path $kapedestfolder -erroraction 'silentlycontinue')   { Write-Host "..$kapedestfolder created"  }
 	if(New-Item -ItemType Directory -Path $kapetkapefolder -erroraction 'silentlycontinue')  { Write-Host "..$kapetkapefolder created" }
+	if(New-Item -ItemType Directory -Path $kapemkapefolder -erroraction 'silentlycontinue')  { Write-Host "..$kapemkapefolder created" }
 	if(New-Item -ItemType Directory -Path $kapeoutputfolder -erroraction 'silentlycontinue') { Write-Host "..$kapeoutputfolder created"}
+	
 	}
 function DownloadKAPE {
 	CreateKAPEFolders
@@ -118,7 +121,7 @@ function DownloadKAPEAteaNativeFiles{
 	Write-Host "..!Atea_collection.tkape downloaded"
 	
 	#Download mkape file
-	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\LiveResponse\!Atea_live_infocollect_native.mkape'
+	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\Atea\!Atea_live_infocollect_native.mkape'
 	$kapeCfgSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/!Atea_live_infocollect_native.mkape"
 	Invoke-WebRequest -Uri $kapeCfgSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
 	Write-Host "..!Atea_live_infocollect_native.mkape downloaded"
@@ -132,12 +135,12 @@ function Download3rdPartyUtils {
 	Write-Host "..Downloading WinPMem version 3.2."
 	$correctHash = "asd"
 	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\bin\winpmem.exe'
-	$WinPMemSrcUrl = "https://github.com/Velocidex/c-aff4/releases/download/3.2/winpmem_3.2.exe"
+	$WinPMemSrcUrl = "https://github.com/Velocidex/WinPmem/releases/download/v4.0.rc1/winpmem_mini_x64_rc2.exe"
 	$SHA512Hash = "1965DE1DAB136DF53ADB2E6E17E8551CDAF7555816504505608895EEB5B8E89A3E7124A6749E80DEA4F74463BD5ECCE6508C2721372C1D8EF29E8B01393C2D8E"
 	Invoke-WebRequest -Uri $WinPMemSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
 	
 	# Verifying Hash of downloaded file before continuing
-	VerifyHash -file $destFile -ExpectedHash $SHA512Hash
+	# VerifyHash -file $destFile -ExpectedHash $SHA512Hash		# Skip SHA-check
 	
 	
 	#
@@ -154,7 +157,7 @@ function Download3rdPartyUtils {
 	Invoke-WebRequest -Uri $PSToolsSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
 	
 	# Verifying Hash of downloaded file before continuing
-	VerifyHash -file $destFile -ExpectedHash $SHA512Hash
+	# VerifyHash -file $destFile -ExpectedHash $SHA512Hash     # Skip SHA-checks
 	
 	#Unzip archive
 	UnzipFile -zipfile $destFile -destpath $PSToolsTemp
@@ -178,7 +181,8 @@ function DownloadKAPEAtea3rdPartyFiles{
 	$AteaFiles = "!Atea_live_all.mkape","!Atea_live_memdump.mkape","!Atea_live_pstools.mkape"
 	foreach ($file in $AteaFiles) {
 		$KapeSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/$file"
-		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\LiveResponse\" -ChildPath $file
+		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\Atea\" -ChildPath $file
+		#$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\" -ChildPath $file
 		Invoke-WebRequest -Uri $KapeSrcUrl -OutFile $KapeDstfile -ErrorAction:Stop -UseBasicParsing
 			Write-Host "..$file downloaded"
 	}

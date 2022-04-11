@@ -7,6 +7,6 @@ BinaryUrl: Native
 ExportFormat: dmp
 Processors:
     -
-        Executable: WinPmem.mkape 
+        Executable: Velocidex_WinPmem.mkape
         CommandLine: ""
         ExportFormat: ""
