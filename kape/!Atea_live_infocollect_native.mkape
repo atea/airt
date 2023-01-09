@@ -1,11 +1,15 @@
 Description: Atea-kapenative - uses native local system binaries and commands. No additional tools needed.
 Category: LiveResponse
 Author: Gos
-Version: 1.0
+Version: 1.1
 Id: 814f00f5-a7ea-a7ea-a7ea-aa57ad90c1159
 BinaryUrl: Native	
 ExportFormat: txt
 Processors:
+    -
+        Executable: Windows_SystemInfo.mkape
+        CommandLine: ""
+        ExportFormat: ""
     -
         Executable: Windows_RoutingTable.mkape
         CommandLine: ""

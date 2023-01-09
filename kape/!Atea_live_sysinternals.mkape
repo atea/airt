@@ -1,4 +1,4 @@
-Description: Atea_live_pstools.mkape
+Description: Atea_live_sysinternals.mkape
 Category: LiveResponse
 Author: Gos
 Version: 1.0
@@ -28,5 +28,9 @@ Processors:
         ExportFormat: ""
     -
         Executable: SysInternals_PsTree.mkape
+        CommandLine: ""
+        ExportFormat: ""
+    -
+        Executable: SysInternals_Autoruns.mkape
         CommandLine: ""
         ExportFormat: ""

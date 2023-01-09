@@ -133,16 +133,10 @@ function Download3rdPartyUtils {
 	# Download WinPMem
 	#
 	Write-Host "..Downloading WinPMem version 3.2."
-	$correctHash = "asd"
 	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\bin\winpmem.exe'
 	$WinPMemSrcUrl = "https://github.com/Velocidex/WinPmem/releases/download/v4.0.rc1/winpmem_mini_x64_rc2.exe"
-	$SHA512Hash = "1965DE1DAB136DF53ADB2E6E17E8551CDAF7555816504505608895EEB5B8E89A3E7124A6749E80DEA4F74463BD5ECCE6508C2721372C1D8EF29E8B01393C2D8E"
 	Invoke-WebRequest -Uri $WinPMemSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
-	
-	# Verifying Hash of downloaded file before continuing
-	# VerifyHash -file $destFile -ExpectedHash $SHA512Hash		# Skip SHA-check
-	
-	
+	 
 	#
 	# Download PS Tools
 	# Extracted into a temp folder and copying only applicable before riding the system of the tempfolder
@@ -150,15 +144,12 @@ function Download3rdPartyUtils {
 	$PSToolsTemp = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\PSToolsTemp'
 	if(New-Item -ItemType Directory -Path $PSToolsTemp -erroraction 'silentlycontinue') { Write-Host "..Temporary PSTools-folder created"}
 	
-	Write-Host "..Downloading PStools ver. 2.47"
+	Write-Host "..Downloading latest PStools"
 	$destFile = Join-Path -Path $PSToolsTemp -ChildPath '\PSTools.zip'
 	$PSToolsSrcUrl = "https://download.sysinternals.com/files/PSTools.zip"
-	$SHA512Hash = "034E032AB15529A01212EAF34E826D3BC907E3E1F13F40F529E6CA47F062CAC32545816362DDE8000A8EF6C2747942BDD6594E4C2EE35970BBAD9A7929658C0C"
 	Invoke-WebRequest -Uri $PSToolsSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
 	
-	# Verifying Hash of downloaded file before continuing
-	# VerifyHash -file $destFile -ExpectedHash $SHA512Hash     # Skip SHA-checks
-	
+
 	#Unzip archive
 	UnzipFile -zipfile $destFile -destpath $PSToolsTemp
 		
@@ -174,11 +165,20 @@ function Download3rdPartyUtils {
 	#Clean up of PSToolsTemp-folder
 	Remove-Item -Path $PSToolsTemp -Recurse -force
 	Write-Host "..Temporary PSfolder with content removed"
+
+	#
+	# Download Autorunsc
+	#
+	Write-Host "..Downloading latest AutoRunsC"
+	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\bin\autorunsc.exe'
+	$AutorunscSrcUrl = "http://live.sysinternals.com/autorunsc.exe"
+	Invoke-WebRequest -Uri $AutorunscSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
+	
 }
 
 function DownloadKAPEAtea3rdPartyFiles{
 	Write-Host "Downloading 3rd party tools Atea-files"
-	$AteaFiles = "!Atea_live_all.mkape","!Atea_live_memdump.mkape","!Atea_live_pstools.mkape"
+	$AteaFiles = "!Atea_live_all.mkape","!Atea_live_memdump.mkape","!Atea_live_sysinternals.mkape"
 	foreach ($file in $AteaFiles) {
 		$KapeSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/$file"
 		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\Atea\" -ChildPath $file
@@ -194,7 +194,8 @@ if($help) {
 	
 	write-host ([System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String('LCosLCwqLCwsKioqKioqKiwsLCwsKioqKiosLCwsKioqKioqKiwqKioqLCwsLCwsLCosKioqKioqKioqKioqKioqKioqKioqKioqKioqKioKKiosLCwqKiosKiosKioqKioqLCwsLCwqKioqKioqL0BAQEBAIygvKi8qKiwqLCoqKioqKiovKioqLCoqLyoqKioqKioqKioqKioqKi8vKioKLCoqKiwqKioqKiwsLCwsLCwsLCosLCwqKiomQEBAQEBAQEAmQEBAQCZALyoqKioqLCoqKioqKi8qLyoqLyoqKiovKioqKiovKioqKioqKioKLCoqLCwsLCwsKioqKiwqKioqKioqKioqQEBAQEBAQEBAQEBAQEBAQEAmQEBAQCgqKioqKioqKioqKioqKioqKioqKiwqKioqKioqLyoqKioKLCosKiwqKiosKiosLCwqKioqLCoqKipAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAqKioqKioqKioqKioqKioqKioqKioqKioqKiovKioqKioKKiwsKiosKiosLCwqLCosKioqKiwsKipAJkBAQEBAQEBAQEAmQEBAQEBAQEBAQEAjKioqKioqKioqKioqKioqKioqLyoqKioqKioqLyoqLCoKKiwqKiwsLCwqLCoqLCwqLCoqKioqKi9AQEBAQEAmQEBAQEBAQEBAQEBAQEBAQEAqKioqKioqKiwsKioqKioqKioqKioqKioqKioqKioqKioKLCwsKiosKiwsKiwsLCwsLCoqKioqKipAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQCYqKioqKiosKiosKioqKioqKioqKioqLyoqKioqLyoqKioKKiosLCwsLCosKiwqLCwqKiosLCwsLCooQEAmQEBAQEBAQEBAQEBAQEBAQEBAQCoqKiwqKiwsKioqLCwqKioqKioqKioqKioqKioqKioqKi8KLCosLCwsKiwsLCosLCwsLCoqKiwqLCwsJiZAQEBAQEBAQEBAQEBAQEBAQEAmKioqKioqKiwsKioqLCoqKioqKi8qKi8qKioqKioqKioqKioKKiosKiosKiwqLCosLCwsKiosKiwqLCwqL0BAQEBAQEBAQEBAQEBAQEBAQCYqKioqKioqKioqLCoqKioqKioqKiovKioqKioqKioqKioqKioKKiwsLCosLCoqLCosLCoqKioqLyosKiwsKkBAQEBAQEBAQEBAQEBAQEBAJS8vLyovKioqKioqKioqKiwsKioqKioqKioqKioqKioqKi8vKioKKiosLCwqKioqKioqLy8mJkBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQCYqKioqKioqKioqKioqKioqKioqKioqKi8qKioKKiwsKiwqKiovQEBAQEBAQEBAQEAmQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQCMqKioqKioqKioqKioqKioqKioqKioqKioKLCoqLCwqKkBAJkBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAJkBAQEBAKCoqKioqKioqKi8qKioqKioqKioqKi8KLCosKiwqQEAmQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAqLyoqKioqKioqKiovKioqKioqKioKKiwqKipAQEBAQEBAQEAmQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAIyoqKioqKioqLyoqKioqKioqKioKLCwqKipAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAJkBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAvKioqKioqKioqKioqLyoqKioKLCoqKipAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQC8qKioqKioqKioqKioqKioKKiosKipAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAJkBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAIyoqKioqKioqKioqKioKKiwqKipAQEBAQEBAQEBAQEBAQEBAQCZAQEAmQEBAQCZAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQCZAQEBAQCZAQEBAJigqKi8qKioqKioqKioKKioqLCojQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAjKioqKioqKioqKi8KLCwsKioqQEBAJkBAQEBAQEBAQEBAQEBAQEBAQEBAQCZAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBALyoqKiovKioqKioKKiosKioqQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAIyoqKioqKiovKioKKiwqKioqKihAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAJkBALyovKioqKioqKioKKiwsLCwqKipAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAmQEBAQEBAQEBAQEBAQEBAQCMqKioqKi8qKioqKioqKioKLCosLCoqLyoqJkBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAqKioqKioqKioqKioqKioqKioKLCwqLCoqKioqL0BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAoKioqKi8KKiwqKioqKioqKipAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAqKioKKioqKioqKioqKiooQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAJkBAQEBAQEBAQEBAQEBAQEBAQEBAQEBALy8KKioqKioqKioqKiovL0BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAKioKKioqKioqKioqKioqKiNAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQCZAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBALyoKKioqKioqKioqKioqKi8mQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAjKi8KKioqKioqKioqKioqKioqJkBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQCoqKi8KKioqKioqKioqKioqKioqKkBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAmQEBAQEBAQEBAQEBAQEBAQEBAQEBAQCUqKiovKioKKioqKioqKioqKioqKiovLy9AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAJkBAQEBAQEBAQEBAQCMqKi8qKioqKioqKioKQEBAQEBAQEBAQEBAQEBAQEBAQCgqQEAqI0BAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEAlQEBAQEBAQCZAJSYjLyo=')))
 	write-host -ForegroundColor Red	"Art thou seeking my wisdom? I bestow upon thee, the content of Get-Help $script"
-	get-help $script
+	get-help $script -full
+	
 	# If help is given, then exit script
 	exit 
 	}
