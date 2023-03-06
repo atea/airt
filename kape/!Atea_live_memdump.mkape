@@ -10,3 +10,7 @@ Processors:
         Executable: Velocidex_WinPmem.mkape
         CommandLine: ""
         ExportFormat: ""
+    -
+        Executable: Windows_MsInfo.mkape
+        CommandLine: ""
+        ExportFormat: ""

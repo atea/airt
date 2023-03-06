@@ -1,14 +1,26 @@
-Description: Atea default Collection - serverside
+Description: Atea default Collection
 
 Author: ATEA IRT
-Version: 1.0
+Version: 1.1
 Id: 5dbe9218-4734-4734-4734-56001d38e7f5
 RecreateDirectories: True
 Targets:
     -
-        Name: Event Logs
-        Category: Event Logs
-        Path: EventLogs.tkape
+        Name: Antivirus
+        Category: Antivirus
+        Path: Antivirus.tkape
+    -
+        Name: CombinedLogs    
+        Category: WindowsLogs
+        Path: CombinedLogs.tkape
+    -
+        Name: EvidenceOfExecution
+        Category: EvidenceOfExecution
+        Path: EvidenceOfExecution.tkape
+    -
+        Name: FileSystem
+        Category: FileSystem
+        Path: FileSystem.tkape
     -
         Name: Evidence of Execution
         Category: Evidence Of Execution
@@ -22,18 +34,26 @@ Targets:
         Category: File Access
         Path: LnkFilesAndJumpLists.tkape
     -
-        Name: PowerShellConsole
-        Category: Evidence Of Execution
-        Path: PowerShellConsole.tkape
-    -
-        Name: RegistryHives
+        Name: RecycleBin_InfoFiles
+        Category: FileDeletion
+        Path: RecycleBin_InfoFiles.tkape    
+	-
+	    Name: RegistryHives
         Category: Registry Hives
         Path: RegistryHives.tkape
+    -
+        Name: RemoteAccess
+        Category: ApplicationLogs
+        Path: RemoteAdmin.tkape
     -
         Name: ScheduledTasks
         Category: ScheduledTasks
         Path: ScheduledTasks.tkape
     -
+        Name: SUM
+        Category: Logs
+        Path: SUM.tkape    
+	-
         Name: SRUM
         Category: SRUM
         Path: SRUM.tkape
@@ -41,10 +61,6 @@ Targets:
         Name: ThumbCache
         Category: Thumbcache
         Path: Thumbcache.tkape
-    -
-        Name: USBDevicesLogs
-        Category: USB
-        Path: USBDevicesLogs.tkape
     -
         Name: WindowsIndexSearch
         Category: Search
