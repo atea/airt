@@ -1,0 +1,11 @@
+Description: PowerShell Console Log File for System 
+Author: Geir Olav Skei
+Version: 1.0
+Id: efa4332a-89eb-430c-ab61-006a9e6620d7
+RecreateDirectories: true
+Targets:
+    -
+        Name: PowerShell Console Log
+        Category: PowerShellConsoleLog
+        Path: %windir%\System32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine
+        FileMask: ConsoleHost_history.txt
