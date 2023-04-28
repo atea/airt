@@ -12,7 +12,7 @@ Targets:
     -
         Name: PowerShell Console Log
         Category: PowerShellConsoleLog System
-        Path: !Atea_PowerShellConsoleSystem.tkape
+        Path: Atea_PowerShellConsoleSystem.tkape
     -
         Name: MOF
         Category: WMI

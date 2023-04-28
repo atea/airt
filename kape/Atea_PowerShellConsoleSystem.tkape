@@ -7,5 +7,5 @@ Targets:
     -
         Name: PowerShell Console Log
         Category: PowerShellConsoleLog
-        Path: %windir%\System32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine
+        Path: C:\System32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine
         FileMask: ConsoleHost_history.txt

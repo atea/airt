@@ -181,7 +181,7 @@ function Download3rdPartyUtils {
 
 function DownloadKAPEAtea3rdPartyFiles{
 	Write-Host "Downloading 3rd party tools Atea-files"
-	$AteaFiles = "!Atea_live_all.mkape","!Atea_live_memdump.mkape","!Atea_live_sysinternals.mkape"
+	$AteaFiles = "!Atea_live_all.mkape","!Atea_live_memdump.mkape","!Atea_live_sysinternals.mkape","Atea_PowerShellConsoleSystem.tkape"
 	foreach ($file in $AteaFiles) {
 		$KapeSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/$file"
 		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\Atea\" -ChildPath $file
