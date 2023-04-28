@@ -127,7 +127,7 @@ function DownloadKAPEAteaNativeFiles{
 			Write-Host "..$file downloaded"
 	}
 
-s	#Download mkape file
+	#Download mkape file
 	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\Atea\!Atea_live_infocollect_native.mkape'
 	$kapeCfgSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/!Atea_live_infocollect_native.mkape"
 	Invoke-WebRequest -Uri $kapeCfgSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
