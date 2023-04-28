@@ -56,8 +56,8 @@ write-host "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Define folder environment
 $kapedestfolder = "C:\airt\"
-$kapetkapefolder = $kapedestfolder+"targets\!local"
-$kapemkapefolder = $kapedestfolder+"modules\Atea"
+$kapetkapefolder = $kapedestfolder+"KAPE\targets\!local"
+$kapemkapefolder = $kapedestfolder+"KAPE\modules\Atea"
 $kapeoutputfolder = $kapedestfolder+"KAPE_OUT"
 
 
