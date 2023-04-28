@@ -56,9 +56,9 @@ write-host "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Define folder environment
 $kapedestfolder = "C:\airt\"
-$kapetkapefolder = "C:\airt\KAPE\targets\!local"
-$kapemkapefolder = "C:\airt\KAPE\modules\Atea"
-$kapeoutputfolder = "C:\airt\KAPE_OUT"
+$kapetkapefolder = $kapedestfolder+"KAPE\targets\!local"
+$kapemkapefolder = $kapedestfolder+"KAPE\modules\Atea"
+$kapeoutputfolder = $kapedestfolder+"KAPE_OUT"
 
 
 # Progress bar for invoke web-request and Expand Archive
