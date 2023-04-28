@@ -19,7 +19,7 @@
     Date:   November 26, 2020
 #>
 param ($download, [switch] $help)
-cls
+Clear-Host
 # Sett cursor position litt ned
 #$Host.UI.RawUI.CursorPosition = New-Object System.Management.Automation.Host.Coordinates 2,($host.ui.rawui.WindowSize.Height 10)
 	
