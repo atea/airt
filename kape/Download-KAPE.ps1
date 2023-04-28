@@ -112,7 +112,7 @@ function DownloadKAPE {
 	$dUrl = 'https://bit.ly/2Ei31Ga'
 	
 	Invoke-WebRequest -Uri $dUrl -OutFile $destFile -ErrorAction:silentlycontinue -UseBasicParsing
-		UnzipFile -zipfile $destFile -destpath $kapedestfolder
+	UnzipFile -zipfile $destFile -destpath $kapedestfolder
 	}
 function DownloadKAPEAteaNativeFiles{
 	Write-Host "Downloading KAPE Atea-files."
