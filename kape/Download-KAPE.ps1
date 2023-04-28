@@ -60,6 +60,11 @@ $kapetkapefolder = "C:\airt\KAPE\targets\!local"
 $kapemkapefolder = "C:\airt\KAPE\modules\Atea"
 $kapeoutputfolder = "C:\airt\KAPE_OUT"
 
+
+# Progress bar for invoke web-request and Expand Archive
+# SilentlyContinue, Continue, Inquire(Y/N),Stop
+$global:ProgressPreference = "SilentlyContinue" 
+
 # Define TLS-version to be used for web-requests as older servers default to lesser secure TLS-versions
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
@@ -105,10 +110,8 @@ function DownloadKAPE {
 	Write-Host "Downloading KAPE"
 	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'kape.zip'
 	$dUrl = 'https://bit.ly/2Ei31Ga'
-	$progressPreference = 'Continue'																	# SilentlyContinue, Continue, Inquire(Y/N),Stop
-	Invoke-WebRequest -Uri $dUrl -OutFile $destFile -ErrorAction:silentlycontinue -UseBasicParsing
 	
-	$progressPreference = 'Continue'
+	Invoke-WebRequest -Uri $dUrl -OutFile $destFile -ErrorAction:silentlycontinue -UseBasicParsing
 	UnzipFile -zipfile $destFile -destpath $kapedestfolder
 	}
 function DownloadKAPEAteaNativeFiles{
