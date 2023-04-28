@@ -117,17 +117,23 @@ function DownloadKAPE {
 function DownloadKAPEAteaNativeFiles{
 	Write-Host "Downloading KAPE Atea-files."
 	
-	#Download tkape file
-	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\targets\!local\!Atea_collection.tkape'
-	$kapeCfgSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/!Atea_collection.tkape"
-	Invoke-WebRequest -Uri $kapeCfgSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
-	Write-Host "..!Atea_collection.tkape downloaded"
-	
-	#Download mkape file
+	#Download tkape files
+	$AteaTkapeFiles = "!Atea_collection.tkape","Atea_PowerShellConsoleSystem.tkape"
+	foreach ($file in $AteaTkapeFiles) {
+		$KapeSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/$file"
+		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\targets\!local\" -ChildPath $file
+		#$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\" -ChildPath $file
+		Invoke-WebRequest -Uri $KapeSrcUrl -OutFile $KapeDstfile -ErrorAction:Stop -UseBasicParsing
+			Write-Host "..$file downloaded"
+	}
+
+s	#Download mkape file
 	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\Atea\!Atea_live_infocollect_native.mkape'
 	$kapeCfgSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/!Atea_live_infocollect_native.mkape"
 	Invoke-WebRequest -Uri $kapeCfgSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
 	Write-Host "..!Atea_live_infocollect_native.mkape downloaded"
+
+	
 	}
 function Download3rdPartyUtils {
 	Write-Host "Downloading 3rd party tools."
@@ -181,7 +187,7 @@ function Download3rdPartyUtils {
 
 function DownloadKAPEAtea3rdPartyFiles{
 	Write-Host "Downloading 3rd party tools Atea-files"
-	$AteaFiles = "!Atea_live_all.mkape","!Atea_live_memdump.mkape","!Atea_live_sysinternals.mkape","Atea_PowerShellConsoleSystem.tkape"
+	$AteaFiles = "!Atea_live_all.mkape","!Atea_live_memdump.mkape","!Atea_live_sysinternals.mkape"
 	foreach ($file in $AteaFiles) {
 		$KapeSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/$file"
 		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\Atea\" -ChildPath $file
