@@ -1,67 +1,20 @@
 Description: Atea default Collection
 
 Author: ATEA IRT
-Version: 1.1
+Version: 1.2
 Id: 5dbe9218-4734-4734-4734-56001d38e7f5
 RecreateDirectories: True
 Targets:
     -
-        Name: Antivirus
-        Category: Antivirus
-        Path: Antivirus.tkape
+        Name: SANS Triage
+        Category: Compound
+        Path: !SANS_Triage.tkape
     -
-        Name: CombinedLogs    
-        Category: WindowsLogs
-        Path: CombinedLogs.tkape
+        Name: PowerShell Console Log
+        Category: PowerShellConsoleLog System
+        Path: !Atea_PowerShellConsoleSystem.tkape
     -
-        Name: EvidenceOfExecution
-        Category: EvidenceOfExecution
-        Path: EvidenceOfExecution.tkape
-    -
-        Name: FileSystem
-        Category: FileSystem
-        Path: FileSystem.tkape
-    -
-        Name: Evidence of Execution
-        Category: Evidence Of Execution
-        Path: EvidenceOfExecution.tkape
-    -
-        Name: File System
-        Category: File System
-        Path: FileSystem.tkape
-    -
-        Name: LnkFilesAndJumpLists
-        Category: File Access
-        Path: LnkFilesAndJumpLists.tkape
-    -
-        Name: RecycleBin_InfoFiles
-        Category: FileDeletion
-        Path: RecycleBin_InfoFiles.tkape    
-	-
-	    Name: RegistryHives
-        Category: Registry Hives
-        Path: RegistryHives.tkape
-    -
-        Name: RemoteAccess
-        Category: ApplicationLogs
-        Path: RemoteAdmin.tkape
-    -
-        Name: ScheduledTasks
-        Category: ScheduledTasks
-        Path: ScheduledTasks.tkape
-    -
-        Name: SUM
-        Category: Logs
-        Path: SUM.tkape    
-	-
-        Name: SRUM
-        Category: SRUM
-        Path: SRUM.tkape
-    -
-        Name: ThumbCache
-        Category: Thumbcache
-        Path: Thumbcache.tkape
-    -
-        Name: WindowsIndexSearch
-        Category: Search
-        Path: WindowsIndexSearch.tkape
+        Name: MOF
+        Category: WMI
+        Path: MOF.tkape
+                
