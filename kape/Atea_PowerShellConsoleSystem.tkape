@@ -1,7 +1,7 @@
 Description: PowerShell Console Log File for System 
 Author: Geir Olav Skei
 Version: 1.0
-Id: efa4332a-89eb-430c-ab61-006a9e6620d7
+Id: 99f99d78-c06b-4915-9659-d8f57fc5fc3d
 RecreateDirectories: true
 Targets:
     -
