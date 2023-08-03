@@ -110,7 +110,8 @@ function DownloadKAPE {
 	Write-Host "Downloading KAPE"
 	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'kape.zip'
 	$dUrl = 'https://bit.ly/2Ei31Ga'
-	
+	$ProgressPreference = 'SilentlyContinue'
+
 	Invoke-WebRequest -Uri $dUrl -OutFile $destFile -ErrorAction:silentlycontinue -UseBasicParsing
 	UnzipFile -zipfile $destFile -destpath $kapedestfolder
 	Write-Host "Cleaning up downloaded zip file"
@@ -119,7 +120,7 @@ function DownloadKAPE {
 	}
 function DownloadKAPEAteaNativeFiles{
 	Write-Host "Downloading KAPE Atea-files."
-	
+	$ProgressPreference = 'SilentlyContinue'
 	#Download tkape files
 	$AteaTkapeFiles = "!Atea_collection.tkape","Atea_PowerShellConsoleSystem.tkape"
 	foreach ($file in $AteaTkapeFiles) {
@@ -140,7 +141,7 @@ function DownloadKAPEAteaNativeFiles{
 	}
 function Download3rdPartyUtils {
 	Write-Host "Downloading 3rd party tools."
-	
+	$ProgressPreference = 'SilentlyContinue'
 	#
 	# Download WinPMem
 	#
