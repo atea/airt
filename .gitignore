@@ -49,7 +49,8 @@ Temporary Items
 [Ll]ib
 [Ll]ib64
 [Ll]ocal
-
+venv
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+__pycache__
