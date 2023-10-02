@@ -4,4 +4,5 @@
 misp_url = '<IP>'
 misp_key = '<KEY>' # The MISP auth key can be found on the MISP web interface under the automation section
 misp_verifycert = False
+o365_webhook = 'https://<yourawesomewebhook>'
 #misp_client_cert = ''
