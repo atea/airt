@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+misp_url = '<IP>'
+misp_key = '<KEY>' # The MISP auth key can be found on the MISP web interface under the automation section
+misp_verifycert = False
+#misp_client_cert = ''
