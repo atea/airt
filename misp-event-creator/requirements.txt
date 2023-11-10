@@ -22,7 +22,7 @@ pandas==2.1.1
 Pillow==10.0.1
 protobuf==4.24.3
 publicsuffixlist==0.10.0.20231002
-pyarrow==13.0.0
+pyarrow==14.0.1
 pydeck==0.8.1b0
 Pygments==2.16.1
 pymisp==2.4.176
