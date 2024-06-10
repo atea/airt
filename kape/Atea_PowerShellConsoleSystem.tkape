@@ -5,7 +5,7 @@ Id: 99f99d78-c06b-4915-9659-d8f57fc5fc3d
 RecreateDirectories: true
 Targets:
     -
-        Name: PowerShell Console Log
+        Name: PowerShell Console System Log
         Category: PowerShellConsoleLog
         Path: C:\Windows\System32\config\systemprofile\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine
         FileMask: ConsoleHost_history.txt

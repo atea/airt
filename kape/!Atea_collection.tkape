@@ -1,16 +1,15 @@
 Description: Atea default Collection
 
-Author: ATEA IRT
-Version: 1.2
+Author: Geir Olav Skei, Atea IRT
+Version: 1.21
 Id: 5dbe9218-4734-4734-4734-56001d38e7f5
 RecreateDirectories: True
 Targets:
     -
-        Name: PowerShell Console Log
+        Name: PowerShell Console System Log
         Category: PowerShellConsoleLog System
         Path: Atea_PowerShellConsoleSystem.tkape
     -
         Name: MOF
         Category: WMI
         Path: MOF.tkape
-                
