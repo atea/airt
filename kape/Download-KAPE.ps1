@@ -50,14 +50,15 @@ write-host ""
 Write-Host " The script will download KAPE and extract it to c:\airt\kape`n"
 Write-Host " Usage: Download-KAPE.ps1"
 Write-Host "        Download-KAPE.ps1 -download <kape|utils|ateaonly|all>"
+Write-Host "        Download-KAPE.ps1 -download kape"
 Write-Host "        Download-KAPE.ps1 -help    OR     Get-Help Download-KAPE.ps1 -full`n"
+Write-Host "        'Download-KAPE.ps1 -download kape' will download updated KAPE + Atea Tkape files`n"
 write-host "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-
 
 # Define folder environment
 $kapedestfolder = "C:\airt\"
 $kapetkapefolder = $kapedestfolder+"KAPE\targets\!local"
-$kapemkapefolder = $kapedestfolder+"KAPE\modules\Atea"
+$kapemkapefolder = $kapedestfolder+"KAPE\modules\!local"
 $kapeoutputfolder = $kapedestfolder+"KAPE_OUT"
 
 
@@ -118,6 +119,10 @@ function DownloadKAPE {
 	Remove-Item -Path $destFile -Force
 
 	}
+Function DownloadUpdatedKAPEFiles {
+	Write-Host "Running kape.exe --sync to update KAPE with latest and greatest KAPEFiles"
+	Start-Process "$kapedestfolder\KAPE\kape.exe" -ArgumentList "--sync" -WorkingDirectory "$kapedestfolder\KAPE\" -Wait -NoNewWindow
+}
 function DownloadKAPEAteaNativeFiles{
 	Write-Host "Downloading KAPE Atea-files."
 	$ProgressPreference = 'SilentlyContinue'
@@ -132,7 +137,7 @@ function DownloadKAPEAteaNativeFiles{
 	}
 
 	#Download mkape file
-	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\Atea\!Atea_live_infocollect_native.mkape'
+	$destFile = Join-Path -Path $kapedestfolder -ChildPath 'KAPE\Modules\!local\!Atea_live_infocollect_native.mkape'
 	$kapeCfgSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/!Atea_live_infocollect_native.mkape"
 	Invoke-WebRequest -Uri $kapeCfgSrcUrl -OutFile $destFile -ErrorAction:Stop -UseBasicParsing
 	Write-Host "..!Atea_live_infocollect_native.mkape downloaded"
@@ -194,7 +199,7 @@ function DownloadKAPEAtea3rdPartyFiles{
 	$AteaFiles = "!Atea_live_all.mkape","!Atea_live_memdump.mkape","!Atea_live_sysinternals.mkape"
 	foreach ($file in $AteaFiles) {
 		$KapeSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/$file"
-		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\Atea\" -ChildPath $file
+		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\!local\" -ChildPath $file
 		#$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\Modules\" -ChildPath $file
 		Invoke-WebRequest -Uri $KapeSrcUrl -OutFile $KapeDstfile -ErrorAction:Stop -UseBasicParsing
 			Write-Host "..$file downloaded"
@@ -218,16 +223,19 @@ if(!$download -OR $download -eq "kape") {
 	# Downloading KAPE + ATEA-native files
 	DownloadKAPE
 	DownloadKAPEAteaNativeFiles
+	DownloadUpdatedKAPEFiles
 }elseif($download -eq "utils"){
 	# Download-parameter utils given
 	# Downloading all third party utilies with associated ATEA mkape-files
 	Download3rdPartyUtils
 	DownloadKAPEAtea3rdPartyFiles
+	DownloadUpdatedKAPEFiles
 }elseif($download -eq "ateaonly"){
 	# Download-parameter utils given
 	# Downloading all atea mkape/tkape files. Use case; updated files while on engagement
 	DownloadKAPEAteaNativeFiles
 	DownloadKAPEAtea3rdPartyFiles
+	DownloadUpdatedKAPEFiles
 }elseif($download -eq "all"){
 	# Download-parameter all given
 	# Downloading KAPE, Atea native m/tkape files, 3rd party utilies with associated ATEA mkape-files
@@ -235,6 +243,7 @@ if(!$download -OR $download -eq "kape") {
 	Download3rdPartyUtils
 	DownloadKAPEAteaNativeFiles
 	DownloadKAPEAtea3rdPartyFiles
+	DownloadUpdatedKAPEFiles
 }else {
 	Write-Host -ForegroundColor Red "Incorrect Download option."
 }
