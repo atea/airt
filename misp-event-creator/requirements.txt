@@ -29,7 +29,7 @@ pymisp==2.4.176
 python-dateutil==2.8.2
 pytz==2023.3.post1
 referencing==0.30.2
-requests==2.31.0
+requests==2.32.2
 rich==13.6.0
 rpds-py==0.10.3
 six==1.16.0
