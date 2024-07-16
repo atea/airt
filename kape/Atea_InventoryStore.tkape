@@ -1,4 +1,4 @@
-Description: PowerShell Console Log File for System 
+Description: Collect InventoryStore DB file present in the SCCM agent folder
 Author: Geir Olav Skei
 Version: 1.0
 Id: 99f99d78-c06b-4915-9659-d8f57fc5fc3e
