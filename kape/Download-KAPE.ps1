@@ -127,7 +127,7 @@ function DownloadKAPEAteaNativeFiles{
 	Write-Host "Downloading KAPE Atea-files."
 	$ProgressPreference = 'SilentlyContinue'
 	#Download tkape files
-	$AteaTkapeFiles = "!Atea_collection.tkape","Atea_PowerShellConsoleSystem.tkape"
+	$AteaTkapeFiles = "!Atea_collection.tkape","Atea_InventoryStore.tkape"
 	foreach ($file in $AteaTkapeFiles) {
 		$KapeSrcUrl = "https://raw.githubusercontent.com/ateanorge/airt/master/kape/$file"
 		$KapeDstfile = Join-Path -Path $kapedestfolder"KAPE\targets\!local\" -ChildPath $file
