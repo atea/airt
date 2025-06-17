@@ -20,7 +20,7 @@ numpy==1.26.0
 packaging==23.2
 pandas==2.1.1
 Pillow==10.3.0
-protobuf==4.24.3
+protobuf==4.25.8
 publicsuffixlist==0.10.0.20231002
 pyarrow==14.0.1
 pydeck==0.8.1b0
