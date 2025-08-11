@@ -23,22 +23,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
-      - name: Delete branch after publishing
-        shell: pwsh
-        run: |
-          $branch = "airt-kape-release"
-          $token  = "${{ secrets.GITHUB_TOKEN }}"
-          $repo   = "${{ github.repository }}"
-          $uri    = "https://api.github.com/repos/$repo/git/refs/heads/$branch"
-
-          Write-Host "Deleting branch $branch from $repo..."
-          try {
-            Invoke-RestMethod -Uri $uri -Method Delete -Headers @{
-              Authorization = "token $token"
-              Accept        = "application/vnd.github.v3+json"
-            }
-            Write-Host "Branch deleted."
-          }
-          catch {
-            Write-Host "Branch not found or could not be deleted: $($_.Exception.Message)"
-          }
