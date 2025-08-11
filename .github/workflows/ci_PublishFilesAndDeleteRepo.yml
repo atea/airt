@@ -1,0 +1,44 @@
+name: Publish KAPE files
+
+on:
+  push:
+    branches:
+      - airt-kape-release
+  
+jobs:
+  Publish-files:
+    runs-on: windows-latest   # PowerShell runs better natively on Windows
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 
+
+      - name: Release KAPE bundles to GH Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: KAPE-releases
+          name: KAPE AteaIRT releases
+          files: |
+            ./KAPE_AteaIRT_LiveForensic.zip
+            ./KAPE_AteaIRT_Collector.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Delete branch after publishing
+        shell: pwsh
+        run: |
+          $branch = "airt-kape-release"
+          $token  = "${{ secrets.GITHUB_TOKEN }}"
+          $repo   = "${{ github.repository }}"
+          $uri    = "https://api.github.com/repos/$repo/git/refs/heads/$branch"
+
+          Write-Host "Deleting branch $branch from $repo..."
+          try {
+            Invoke-RestMethod -Uri $uri -Method Delete -Headers @{
+              Authorization = "token $token"
+              Accept        = "application/vnd.github.v3+json"
+            }
+            Write-Host "Branch deleted."
+          }
+          catch {
+            Write-Host "Branch not found or could not be deleted: $($_.Exception.Message)"
+          }
