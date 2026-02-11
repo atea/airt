@@ -19,7 +19,7 @@ mdurl==0.1.2
 numpy==1.26.0
 packaging==23.2
 pandas==2.1.1
-Pillow==10.3.0
+Pillow==12.1.1
 protobuf==5.29.6
 publicsuffixlist==0.10.0.20231002
 pyarrow==14.0.1
