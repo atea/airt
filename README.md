@@ -1,10 +1,8 @@
-Various public files pertaining to Atea IRT
-
 ## KAPE
 Only if **instructed** by Atea IRT, download KAPE from here: https://github.com/atea/airt/releases/ 
 
 
-Procedure 
+### Procedure 
  - Download KAPE.
  - Preferrably run it from on an USB on physical devices.
  - Start up cmd **as administrator**.
