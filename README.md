@@ -3,8 +3,8 @@ Only if **instructed** by Atea IRT, download KAPE from here: https://github.com/
 
 
 ### Procedure 
- - Download KAPE.
- - Preferrably run it from on an USB on physical devices.
+ - Download KAPE_AteaIRT_Collector.zip.
+ - Preferrably run it from USB when collecting data from physical devices.
  - Start up cmd **as administrator**.
  - Issue the command underneat
     - Needs to be from an elevated powershell prompt.
