@@ -24,7 +24,7 @@ protobuf==5.29.6
 publicsuffixlist==0.10.0.20231002
 pyarrow==14.0.1
 pydeck==0.8.1b0
-Pygments==2.16.1
+Pygments==2.20.0
 pymisp==2.4.176
 python-dateutil==2.8.2
 pytz==2023.3.post1
