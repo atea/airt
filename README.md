@@ -13,5 +13,5 @@ Only if **instructed** by Atea IRT, download KAPE from here: https://github.com/
 ### KAPE collection command
 ```powershell
 # From elevated shell & Adjust drive letter as needed
-.\kape.exe --tsource c: --tdest e:\airt\KAPE_OUT\%m_%d --target !Atea_default_collection.tkape,!SANS_Triage --zip KAPEtriage_%m_%d --gui
+.\kape.exe --tsource c: --tdest e:\airt\KAPE_OUT\%m_%d --target !Atea_default_collection.tkape --zip KAPEtriage_%m_%d --gui
 ```
